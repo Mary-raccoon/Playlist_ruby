@@ -1,0 +1,21 @@
+<a href = "/songs">Dashboard </a> | <a href = "/sessions/logout"> Logout </a>
+<h2><%= @user.first_name %> <%= @user.last_name %>'s Playlist</h2>
+
+<table>
+  <thead>
+    <tr>
+      <td>Artist |</td>
+      <td>Title |</td>
+      <td>Times Added</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @songs.each do |s| %>
+      <tr>
+        <td><%= s[:artist] %></td>
+        <td> <%= s[:title] %> </td>
+        <td> <%= List.where(user: @user, song: s).count %></td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>

@@ -1,0 +1,23 @@
+<a href = "/songs">Dashboard </a> | <a href = "/sessions/logout"> Logout </a>
+<h2>Others who added <%= @song.artist %> - <%= @song.title %> </h2>
+
+<table>
+  <thead>
+    <tr>
+      <td>Name |</td>
+      <td>Time added |</td>
+    </tr>
+  </thead>
+  <tbody>
+  
+    <% @users.each do |u| %>
+        <% if u.lists.exists?(song:@song) %>
+            <tr>
+                <td><a href = "/users/<%= u.id %>/songs/<%= @song.id %>/list"><%= u.first_name %> <%= u.last_name %></a></td>
+                <td><%= List.where(user: u, song: @song).count %></td>
+                
+            </tr>
+        <% end %>
+    <% end %>  
+  </tbody>
+</table>
